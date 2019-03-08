@@ -13,28 +13,34 @@ options = Options()
 options.add_argument("user-data-dir=C:\\Users\\javif\\ChromeProfiles\\BotUser\\User Data")
 
 
-# Replace below path with the absolute path 
-# to chromedriver in your computer 
+# I had a problem setting the path of the chromedriver, so instead of that
+# the script downloads it every time you want to send a message.
+# TODO: Set a right path to avoid the download part.
 driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
 
+# Set the website, in this case is web.whatsapp.com
 driver.get("https://web.whatsapp.com/") 
 wait = WebDriverWait(driver, 600) 
 
 # Replace 'Friend's Name' with the name of your friend 
-# or the name of a group 
+# or the name of a group
+# TODO: Set this within the arguments on the script. 
 target = '"Criss, Miguel y Carlota"'
 
-# Replace the below string with your own message //*[@id="app"]/div/div/div[3]
+# Replace the below string with your own message
+# TODO: Set this within the arguments on the script.
 string = " Testing something (ignore this message) "
 
+# Looking for the contact (this might take a while)
+# TODO: Find a way to scroll down if the contact isn't visible.
 x_arg = '//span[contains(@title,' + target + ')]'
 group_title = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.XPATH, x_arg)))
 group_title.click() 
-print("asdc")
+
+# Typing the message and sending it. 
 inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'    #'//div[@class="input"][@dir="auto"][@data-tab="1"]'
 input_box = WebDriverWait(driver,150).until(EC.presence_of_element_located(( 
 	By.XPATH, inp_xpath))) 
-print("oli")
 
 input_box.send_keys(string + Keys.ENTER) 
 
