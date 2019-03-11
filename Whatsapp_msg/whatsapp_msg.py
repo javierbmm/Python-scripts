@@ -49,8 +49,7 @@ inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'    #'//div[@class=
 input_box = WebDriverWait(driver,150).until(EC.presence_of_element_located(( 
 	By.XPATH, inp_xpath))) 
 
-for i in range(10):
-    input_box.send_keys(string + Keys.ENTER)
+input_box.send_keys(string + Keys.ENTER)
 
 
 
