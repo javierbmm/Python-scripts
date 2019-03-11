@@ -1,3 +1,10 @@
+# NOTES: In order to use this script properly, you need to download Selenium API and the specific driver 
+#       for your browser: In this case I'm using Chrome Driver. 
+# LINKS: 
+#           - http://chromedriver.chromium.org/downloads
+#           - https://www.seleniumhq.org/
+
+
 from selenium import webdriver 
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC 
@@ -25,11 +32,11 @@ wait = WebDriverWait(driver, 600)
 # Replace 'Friend's Name' with the name of your friend 
 # or the name of a group
 # TODO: Set this within the arguments on the script. 
-target = '"Criss, Miguel y Carlota"'
+target = '"Sami LS"'
 
 # Replace the below string with your own message
 # TODO: Set this within the arguments on the script.
-string = " Testing something (ignore this message) "
+string = " exams "
 
 # Looking for the contact (this might take a while)
 # TODO: Find a way to scroll down if the contact isn't visible.
@@ -42,5 +49,9 @@ inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'    #'//div[@class=
 input_box = WebDriverWait(driver,150).until(EC.presence_of_element_located(( 
 	By.XPATH, inp_xpath))) 
 
-input_box.send_keys(string + Keys.ENTER) 
+for i in range(10):
+    input_box.send_keys(string + Keys.ENTER)
+
+
+
 
